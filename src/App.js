@@ -4,25 +4,30 @@ import './App.css';
 class App extends Component {
   state = {
     boxes: {
-      1: { content: '' },
-      2: { content: '' },
-      3: { content: '' },
-      4: { content: '' },
-      5: { content: '' },
-      6: { content: '' },
-      7: { content: '' },
-      8: { content: '' },
-      9: { content: '' },
+      1: { content: '', played: false },
+      2: { content: '', played: false },
+      3: { content: '', played: false },
+      4: { content: '', played: false },
+      5: { content: '', played: false },
+      6: { content: '', played: false },
+      7: { content: '', played: false },
+      8: { content: '', played: false },
+      9: { content: '', played: false },
     },
     playerOneTurn: true,
     playerTwoTurn: false,
   }
   handleBoxClick = (e) => {
+    // if the box has already been used, don't do anything
+    if (this.state.boxes[e.target.id].played) {
+      return;
+    }
+
     const letterToAdd = this.state.playerOneTurn ? 'x' : 'o'
     this.setState({
       boxes: {
         ...this.state.boxes,
-        [e.target.id]: { content: letterToAdd }
+        [e.target.id]: { content: letterToAdd, played: true }
       },
       playerOneTurn: !this.state.playerOneTurn,
       playerTwoTurn: !this.state.playerTwoTurn,
