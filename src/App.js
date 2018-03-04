@@ -34,13 +34,14 @@ class App extends Component {
     })
   }
   render() {
+    const currentPlayer = this.state.playerOneTurn ? '1' : '2';
     return (
       <div className="App">
         <header className="App-header">
           <h1 className="App-title">React-Tac-Toe</h1>
         </header>
         <section className="game-message">
-          <h2>Turn: Player 1</h2>
+          <h2>Turn: Player {currentPlayer}</h2>
         </section>
         <ul className="game">
           {Object.keys(this.state.boxes).map(boxId => (
