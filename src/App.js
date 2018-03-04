@@ -44,8 +44,7 @@ class App extends Component {
       },
       playerOneTurn: !this.state.playerOneTurn,
       playerTwoTurn: !this.state.playerTwoTurn,
-    });
-    this.checkGameStatus();
+    }, () => this.checkGameStatus());
   }
   resetGame = () => {
     this.setState(initialState);
