@@ -13,12 +13,23 @@ const initialState = {
     8: { content: '', played: false },
     9: { content: '', played: false },
   },
+  gameStatus: 'play',
   playerOneTurn: true,
   playerTwoTurn: false,
 }
 
 class App extends Component {
   state = initialState
+
+  checkGameStatus = () => {
+    const isGameDone = () => Object.keys(this.state.boxes).every(boxId => {
+      return this.state.boxes[boxId].played === true;
+    });
+    if (isGameDone()) {
+      this.setState({gameStatus: 'done'})
+    }
+  }
+
   handleBoxClick = (e) => {
     // if the box has already been used, don't do anything
     if (this.state.boxes[e.target.id].played) {
@@ -33,20 +44,29 @@ class App extends Component {
       },
       playerOneTurn: !this.state.playerOneTurn,
       playerTwoTurn: !this.state.playerTwoTurn,
-    })
+    });
+    this.checkGameStatus();
   }
   resetGame = () => {
     this.setState(initialState);
   }
   render() {
     const currentPlayer = this.state.playerOneTurn ? '1' : '2';
+    let gameStatusText;
+    switch(this.state.gameStatus) {
+      case 'done':
+        gameStatusText = 'Draw!';
+        break;
+      default:
+        gameStatusText = `Turn: Player ${currentPlayer}`;
+    }
     return (
       <div className="App">
         <header className="App-header">
           <h1 className="App-title">React-Tac-Toe</h1>
         </header>
         <section className="game-message">
-          <h2>Turn: Player {currentPlayer}</h2>
+          <h2>{gameStatusText}</h2>
         </section>
         <ul className="game">
           {Object.keys(this.state.boxes).map(boxId => (
