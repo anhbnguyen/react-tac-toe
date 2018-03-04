@@ -2,6 +2,19 @@ import React, { Component } from 'react';
 import './App.css';
 
 class App extends Component {
+  state = {
+    boxes: {
+      1: { content: '' },
+      2: { content: '' },
+      3: { content: '' },
+      4: { content: '' },
+      5: { content: '' },
+      6: { content: '' },
+      7: { content: '' },
+      8: { content: '' },
+      9: { content: '' },
+    },
+  }
   render() {
     return (
       <div className="App">
@@ -12,18 +25,12 @@ class App extends Component {
           <h2>Turn: Player 1</h2>
         </section>
         <ul className="game">
-          {/* first row */}
-          <li className="o"></li>
-          <li className="x"></li>
-          <li></li>
-          {/* second row */}
-          <li></li>
-          <li></li>
-          <li></li>
-          {/* third row */}
-          <li></li>
-          <li></li>
-          <li></li>
+          {Object.keys(this.state.boxes).map(boxId => (
+            <li
+              className={this.state.boxes[boxId].content}
+              id={boxId}
+            ></li>
+          ))}
         </ul>
         <button className="reset-game">Reset Game</button>
         <div className="scores">
