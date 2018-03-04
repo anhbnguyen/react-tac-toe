@@ -1,22 +1,24 @@
 import React, { Component } from 'react';
 import './App.css';
 
+const initialState = {
+  boxes: {
+    1: { content: '', played: false },
+    2: { content: '', played: false },
+    3: { content: '', played: false },
+    4: { content: '', played: false },
+    5: { content: '', played: false },
+    6: { content: '', played: false },
+    7: { content: '', played: false },
+    8: { content: '', played: false },
+    9: { content: '', played: false },
+  },
+  playerOneTurn: true,
+  playerTwoTurn: false,
+}
+
 class App extends Component {
-  state = {
-    boxes: {
-      1: { content: '', played: false },
-      2: { content: '', played: false },
-      3: { content: '', played: false },
-      4: { content: '', played: false },
-      5: { content: '', played: false },
-      6: { content: '', played: false },
-      7: { content: '', played: false },
-      8: { content: '', played: false },
-      9: { content: '', played: false },
-    },
-    playerOneTurn: true,
-    playerTwoTurn: false,
-  }
+  state = initialState
   handleBoxClick = (e) => {
     // if the box has already been used, don't do anything
     if (this.state.boxes[e.target.id].played) {
@@ -32,6 +34,9 @@ class App extends Component {
       playerOneTurn: !this.state.playerOneTurn,
       playerTwoTurn: !this.state.playerTwoTurn,
     })
+  }
+  resetGame = () => {
+    this.setState(initialState);
   }
   render() {
     const currentPlayer = this.state.playerOneTurn ? '1' : '2';
@@ -52,7 +57,12 @@ class App extends Component {
             ></li>
           ))}
         </ul>
-        <button className="reset-game">Reset Game</button>
+        <button
+          className="reset-game"
+          onClick={this.resetGame}
+        >
+          Reset Game
+        </button>
         <div className="scores">
             <h2>Score Card</h2>
             Player 1: <span id="player-one-score">0</span> <br />
