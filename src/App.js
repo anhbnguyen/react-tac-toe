@@ -51,6 +51,7 @@ class App extends Component {
         <ul className="game">
           {Object.keys(this.state.boxes).map(boxId => (
             <li
+              key={boxId}
               className={this.state.boxes[boxId].content}
               id={boxId}
               onClick={this.handleBoxClick}
