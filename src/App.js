@@ -11,10 +11,10 @@ class App extends Component {
         <section className="game-message">
           <h2>Turn: Player 1</h2>
         </section>
-        <ul id="game">
+        <ul className="game">
           {/* first row */}
-          <li className="o">O</li>
-          <li className="x">X</li>
+          <li className="o"></li>
+          <li className="x"></li>
           <li></li>
           {/* second row */}
           <li></li>
