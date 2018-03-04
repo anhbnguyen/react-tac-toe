@@ -23,10 +23,10 @@ class App extends Component {
       boxes: {
         ...this.state.boxes,
         [e.target.id]: { content: letterToAdd }
-      }
+      },
+      playerOneTurn: !this.state.playerOneTurn,
+      playerTwoTurn: !this.state.playerTwoTurn,
     })
-    this.setState({playerOneTurn: !this.state.playerOneTurn })
-    this.setState({ playerTwoTurn: !this.state.playerTwoTurn })
   }
   render() {
     return (
