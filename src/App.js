@@ -14,14 +14,19 @@ class App extends Component {
       8: { content: '' },
       9: { content: '' },
     },
+    playerOneTurn: true,
+    playerTwoTurn: false,
   }
   handleBoxClick = (e) => {
+    const letterToAdd = this.state.playerOneTurn ? 'x' : 'o'
     this.setState({
       boxes: {
         ...this.state.boxes,
-        [e.target.id]: { content: 'x'}
+        [e.target.id]: { content: letterToAdd }
       }
     })
+    this.setState({playerOneTurn: !this.state.playerOneTurn })
+    this.setState({ playerTwoTurn: !this.state.playerTwoTurn })
   }
   render() {
     return (
