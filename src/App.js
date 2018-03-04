@@ -15,6 +15,14 @@ class App extends Component {
       9: { content: '' },
     },
   }
+  handleBoxClick = (e) => {
+    this.setState({
+      boxes: {
+        ...this.state.boxes,
+        [e.target.id]: { content: 'x'}
+      }
+    })
+  }
   render() {
     return (
       <div className="App">
@@ -29,6 +37,7 @@ class App extends Component {
             <li
               className={this.state.boxes[boxId].content}
               id={boxId}
+              onClick={this.handleBoxClick}
             ></li>
           ))}
         </ul>
