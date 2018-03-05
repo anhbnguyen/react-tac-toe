@@ -32,8 +32,9 @@ class App extends Component {
   }
 
   handleSquareClick = (e) => {
+    const clickedSquareId = e.target.id;
     // if the square has already been used, don't do anything
-    if (this.state.squares[e.target.id].played) {
+    if (this.state.squares[clickedSquareId].played) {
       return;
     }
 
@@ -42,10 +43,10 @@ class App extends Component {
     this.setState({
       squares: {
         ...this.state.squares,
-        [e.target.id]: { content: letterToAdd, played: true }
+        [clickedSquareId]: { content: letterToAdd, played: true }
       },
       playerOneTurn: !this.state.playerOneTurn,
-      [currentPlayerSquares]: this.state[currentPlayerSquares].concat(e.target.id),
+      [currentPlayerSquares]: this.state[currentPlayerSquares].concat(clickedSquareId),
     }, () => this.checkGameStatus());
   }
 
