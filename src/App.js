@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
+import GameBoard from './GameBoard.js';
 import { initialState, winningCombinations } from './constants.js'
 import './App.css';
-import GameBoard from './GameBoard.js';
 
 class App extends Component {
   state = initialState
@@ -120,11 +120,11 @@ class App extends Component {
         >
           Reset Game
         </button>
-        <div className="scores">
+        <section className="scores">
             <h2>Score Card</h2>
             Player 1: <span id="player-one-score">{this.state.playerOneScore}</span> <br />
             Player 2: <span id="player-two-score">{this.state.playerTwoScore}</span> <br />
-        </div>
+        </section>
       </div>
     );
   }
