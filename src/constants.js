@@ -11,7 +11,7 @@ export const initialState = {
     9: { content: '', played: false },
   },
   gameStatus: 'play',
-  playerOneTurn: true,
+  isPlayerOnesTurn: true,
   playerOneSquares: [],
   playerTwoSquares: [],
   playerOneScore: 0,

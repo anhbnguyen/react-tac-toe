@@ -7,11 +7,11 @@ class App extends Component {
   state = initialState
 
   switchCurrentPlayer = () => {
-    this.setState({ playerOneTurn: !this.state.playerOneTurn });
+    this.setState({ isPlayerOnesTurn: !this.state.isPlayerOnesTurn });
   }
 
   updateGameStatus = (clickedSquareId) => {
-    const currentPlayerSquares = this.state.playerOneTurn
+    const currentPlayerSquares = this.state.isPlayerOnesTurn
       ? this.state.playerOneSquares
       : this.state.playerTwoSquares;
 
@@ -21,7 +21,7 @@ class App extends Component {
     });
 
     if (playerHasWon) {
-      if (this.state.playerOneTurn) {
+      if (this.state.isPlayerOnesTurn) {
         this.setState({
           gameStatus: 'winnerPlayerOne',
           playerOneScore: this.state.playerOneScore + 1,
@@ -60,8 +60,8 @@ class App extends Component {
       return;
     }
 
-    const letterToAdd = this.state.playerOneTurn ? 'x' : 'o'
-    const currentPlayerSquares = this.state.playerOneTurn ? 'playerOneSquares' : 'playerTwoSquares'
+    const letterToAdd = this.state.isPlayerOnesTurn ? 'x' : 'o'
+    const currentPlayerSquares = this.state.isPlayerOnesTurn ? 'playerOneSquares' : 'playerTwoSquares'
 
     this.setState(
       {
@@ -85,7 +85,7 @@ class App extends Component {
   }
 
   render() {
-    const currentPlayer = this.state.playerOneTurn ? '1' : '2';
+    const currentPlayer = this.state.isPlayerOnesTurn ? '1' : '2';
 
     let gameStatusText;
     switch(this.state.gameStatus) {
