@@ -19,19 +19,59 @@ const initialState = {
   playerTwoSquares: [],
 }
 
+const winningCombinations = [
+  ['1', '2', '3'],
+  ['1', '4', '7'],
+  ['1', '5', '9'],
+  ['2', '5', '8'],
+  ['3', '6', '9'],
+  ['3', '5', '7'],
+  ['4', '5', '6'],
+  ['7', '8', '9'],
+];
+
 class App extends Component {
   state = initialState
 
-  checkGameStatus = () => {
+  switchCurrentPlayer = () => {
+    this.setState({ playerOneTurn: !this.state.playerOneTurn });
+  }
+
+  updateGameStatus = (clickedSquareId) => {
+    const currentPlayerSquares = this.state.playerOneTurn
+      ? this.state.playerOneSquares
+      : this.state.playerTwoSquares;
+
+    const possibleWinningCombinations = winningCombinations.filter(combination => combination.includes(clickedSquareId));
+    const playerHasWon = possibleWinningCombinations.find(combination => {
+      return combination.every(number => currentPlayerSquares.includes(number));
+    });
+
+    if (playerHasWon) {
+      const winnerStatus = this.state.playerOneTurn ? 'winnerPlayerOne' : 'winnerPlayerTwo'
+      this.setState({ gameStatus: winnerStatus });
+      return;
+    }
+
     const isGameDone = () => Object.keys(this.state.squares).every(squareId => {
       return this.state.squares[squareId].played === true;
     });
+
     if (isGameDone()) {
       this.setState({gameStatus: 'done'})
+      return;
     }
+
+    // if game isn't over, switch to other player
+    this.switchCurrentPlayer();
   }
 
   handleSquareClick = (e) => {
+    // don't allow anymore actions is game already is over
+    if (this.state.gameStatus !== 'play') {
+      return;
+    }
+
     const clickedSquareId = e.target.id;
     // if the square has already been used, don't do anything
     if (this.state.squares[clickedSquareId].played) {
@@ -45,9 +85,8 @@ class App extends Component {
         ...this.state.squares,
         [clickedSquareId]: { content: letterToAdd, played: true }
       },
-      playerOneTurn: !this.state.playerOneTurn,
       [currentPlayerSquares]: this.state[currentPlayerSquares].concat(clickedSquareId),
-    }, () => this.checkGameStatus());
+    }, () => this.updateGameStatus(clickedSquareId));
   }
 
   resetGame = () => {
@@ -59,6 +98,12 @@ class App extends Component {
 
     let gameStatusText;
     switch(this.state.gameStatus) {
+      case 'winnerPlayerOne':
+        gameStatusText = 'Player One Wins!';
+        break;
+      case 'winnerPlayerTwo':
+        gameStatusText = 'Player Two Wins!';
+        break;
       case 'done':
         gameStatusText = 'Draw!';
         break;
