@@ -15,6 +15,8 @@ const initialState = {
   },
   gameStatus: 'play',
   playerOneTurn: true,
+  playerOneSquares: [],
+  playerTwoSquares: [],
 }
 
 class App extends Component {
@@ -36,12 +38,14 @@ class App extends Component {
     }
 
     const letterToAdd = this.state.playerOneTurn ? 'x' : 'o'
+    const currentPlayerSquares = this.state.playerOneTurn ? 'playerOneSquares' : 'playerTwoSquares'
     this.setState({
       squares: {
         ...this.state.squares,
         [e.target.id]: { content: letterToAdd, played: true }
       },
       playerOneTurn: !this.state.playerOneTurn,
+      [currentPlayerSquares]: this.state[currentPlayerSquares].concat(e.target.id),
     }, () => this.checkGameStatus());
   }
 
