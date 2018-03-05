@@ -20,7 +20,7 @@ const GameBoard = (props) => {
 
 GameBoard.propTypes = {
     handleSquareClick: PropTypes.func.isRequired,
-    squares: PropTypes.array.isRequired,
+    squares: PropTypes.object.isRequired,
 }
 
 export default GameBoard;
