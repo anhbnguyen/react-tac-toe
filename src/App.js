@@ -78,7 +78,7 @@ class App extends Component {
   }
 
   handleSquareClick = (e) => {
-    // don't allow anymore actions is game already is over
+    // don't allow anymore actions if game is already over
     if (this.state.gameStatus !== 'play') {
       return;
     }
@@ -91,18 +91,23 @@ class App extends Component {
 
     const letterToAdd = this.state.playerOneTurn ? 'x' : 'o'
     const currentPlayerSquares = this.state.playerOneTurn ? 'playerOneSquares' : 'playerTwoSquares'
-    this.setState({
-      squares: {
-        ...this.state.squares,
-        [clickedSquareId]: { content: letterToAdd, played: true }
+
+    this.setState(
+      {
+        squares: {
+          ...this.state.squares,
+          [clickedSquareId]: { content: letterToAdd, played: true }
+        },
+        [currentPlayerSquares]: this.state[currentPlayerSquares].concat(clickedSquareId),
       },
-      [currentPlayerSquares]: this.state[currentPlayerSquares].concat(clickedSquareId),
-    }, () => this.updateGameStatus(clickedSquareId));
+      () => this.updateGameStatus(clickedSquareId)
+    );
   }
 
   resetGame = () => {
     this.setState({
       ...initialState,
+      // preserve scores
       playerOneScore: this.state.playerOneScore,
       playerTwoScore: this.state.playerTwoScore,
     });
