@@ -53,12 +53,12 @@ class App extends Component {
       return;
     }
 
-    const isGameDone = () => Object.keys(this.state.squares).every(squareId => {
+    const allSquaresUsed = Object.keys(this.state.squares).every(squareId => {
       return this.state.squares[squareId].played === true;
     });
 
-    if (isGameDone()) {
-      this.setState({gameStatus: 'done'})
+    if (allSquaresUsed && !playerHasWon) {
+      this.setState({gameStatus: 'draw'})
       return;
     }
 
@@ -104,7 +104,7 @@ class App extends Component {
       case 'winnerPlayerTwo':
         gameStatusText = 'Player Two Wins!';
         break;
-      case 'done':
+      case 'draw':
         gameStatusText = 'Draw!';
         break;
       default:
