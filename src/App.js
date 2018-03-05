@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 
 const initialState = {
-  boxes: {
+  squares: {
     1: { content: '', played: false },
     2: { content: '', played: false },
     3: { content: '', played: false },
@@ -21,24 +21,24 @@ class App extends Component {
   state = initialState
 
   checkGameStatus = () => {
-    const isGameDone = () => Object.keys(this.state.boxes).every(boxId => {
-      return this.state.boxes[boxId].played === true;
+    const isGameDone = () => Object.keys(this.state.squares).every(squareId => {
+      return this.state.squares[squareId].played === true;
     });
     if (isGameDone()) {
       this.setState({gameStatus: 'done'})
     }
   }
 
-  handleBoxClick = (e) => {
-    // if the box has already been used, don't do anything
-    if (this.state.boxes[e.target.id].played) {
+  handleSquareClick = (e) => {
+    // if the square has already been used, don't do anything
+    if (this.state.squares[e.target.id].played) {
       return;
     }
 
     const letterToAdd = this.state.playerOneTurn ? 'x' : 'o'
     this.setState({
-      boxes: {
-        ...this.state.boxes,
+      squares: {
+        ...this.state.squares,
         [e.target.id]: { content: letterToAdd, played: true }
       },
       playerOneTurn: !this.state.playerOneTurn,
@@ -70,12 +70,12 @@ class App extends Component {
           <h2>{gameStatusText}</h2>
         </section>
         <ul className="game">
-          {Object.keys(this.state.boxes).map(boxId => (
+          {Object.keys(this.state.squares).map(squareId => (
             <li
-              key={boxId}
-              className={this.state.boxes[boxId].content}
-              id={boxId}
-              onClick={this.handleBoxClick}
+              key={squareId}
+              className={this.state.squares[squareId].content}
+              id={squareId}
+              onClick={this.handleSquareClick}
             ></li>
           ))}
         </ul>
