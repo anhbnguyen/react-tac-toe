@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { initialState, winningCombinations } from './constants.js'
 import './App.css';
+import GameBoard from './GameBoard.js';
 
 class App extends Component {
   state = initialState
@@ -109,16 +110,10 @@ class App extends Component {
         <section className="game-message">
           <h2>{gameStatusText}</h2>
         </section>
-        <ul className="game">
-          {Object.keys(this.state.squares).map(squareId => (
-            <li
-              key={squareId}
-              className={this.state.squares[squareId].content}
-              id={squareId}
-              onClick={this.handleSquareClick}
-            ></li>
-          ))}
-        </ul>
+        <GameBoard
+          squares={this.state.squares}
+          handleSquareClick={this.handleSquareClick}
+        />
         <button
           className="reset-game"
           onClick={this.resetGame}
