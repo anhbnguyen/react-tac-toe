@@ -15,7 +15,6 @@ const initialState = {
   },
   gameStatus: 'play',
   playerOneTurn: true,
-  playerTwoTurn: false,
 }
 
 class App extends Component {
@@ -43,14 +42,16 @@ class App extends Component {
         [e.target.id]: { content: letterToAdd, played: true }
       },
       playerOneTurn: !this.state.playerOneTurn,
-      playerTwoTurn: !this.state.playerTwoTurn,
     }, () => this.checkGameStatus());
   }
+
   resetGame = () => {
     this.setState(initialState);
   }
+
   render() {
     const currentPlayer = this.state.playerOneTurn ? '1' : '2';
+
     let gameStatusText;
     switch(this.state.gameStatus) {
       case 'done':
@@ -59,6 +60,7 @@ class App extends Component {
       default:
         gameStatusText = `Turn: Player ${currentPlayer}`;
     }
+
     return (
       <div className="App">
         <header className="App-header">
