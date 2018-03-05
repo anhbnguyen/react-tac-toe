@@ -17,6 +17,8 @@ const initialState = {
   playerOneTurn: true,
   playerOneSquares: [],
   playerTwoSquares: [],
+  playerOneScore: 0,
+  playerTwoScore: 0,
 }
 
 const winningCombinations = [
@@ -48,8 +50,17 @@ class App extends Component {
     });
 
     if (playerHasWon) {
-      const winnerStatus = this.state.playerOneTurn ? 'winnerPlayerOne' : 'winnerPlayerTwo'
-      this.setState({ gameStatus: winnerStatus });
+      if (this.state.playerOneTurn) {
+        this.setState({
+          gameStatus: 'winnerPlayerOne',
+          playerOneScore: this.state.playerOneScore + 1,
+        });
+      } else {
+        this.setState({
+          gameStatus: 'winnerPlayerTwo',
+          playerTwoScore: this.state.playerTwoScore + 1,
+        });
+      }
       return;
     }
 
@@ -90,7 +101,11 @@ class App extends Component {
   }
 
   resetGame = () => {
-    this.setState(initialState);
+    this.setState({
+      ...initialState,
+      playerOneScore: this.state.playerOneScore,
+      playerTwoScore: this.state.playerTwoScore,
+    });
   }
 
   render() {
@@ -137,8 +152,8 @@ class App extends Component {
         </button>
         <div className="scores">
             <h2>Score Card</h2>
-            Player 1: <span id="player-one-score">0</span> <br />
-            Player 2: <span id="player-two-score">0</span> <br />
+            Player 1: <span id="player-one-score">{this.state.playerOneScore}</span> <br />
+            Player 2: <span id="player-two-score">{this.state.playerTwoScore}</span> <br />
         </div>
       </div>
     );
