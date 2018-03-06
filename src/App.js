@@ -16,6 +16,12 @@ class App extends Component {
             9: { content: '', played: false },
         },
         isPlayerOnesTurn: true,
+        playerOne: {
+            squares: [],
+        },
+        playerTwo: {
+            squares: [],
+        },
     }
 
     handleSquareClick = (e) => {
@@ -27,9 +33,13 @@ class App extends Component {
         }
 
         const letterToAdd = this.state.isPlayerOnesTurn ? 'x' : 'o';
+        const currentPlayer = this.state.isPlayerOnesTurn ? 'playerOne' : 'playerTwo'
 
         this.setState({
             isPlayerOnesTurn: !this.state.isPlayerOnesTurn,
+            [currentPlayer]: {
+                squares: this.state[currentPlayer].squares.concat(clickedSquareId),
+            },
             squares: {
                 ...this.state.squares,
                 [clickedSquareId]: { content: letterToAdd, played: true }
