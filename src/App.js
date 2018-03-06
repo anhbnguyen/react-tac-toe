@@ -1,39 +1,23 @@
 import React, { Component } from 'react';
 import GameBoard from './GameBoard.js';
+import { INITIAL_STATE, WINNING_COMBINATIONS } from './constants.js'
 import './App.css';
 
-const WINNING_COMBINATIONS = [
-    ['1', '2', '3'],
-    ['1', '4', '7'],
-    ['1', '5', '9'],
-    ['2', '5', '8'],
-    ['3', '6', '9'],
-    ['3', '5', '7'],
-    ['4', '5', '6'],
-    ['7', '8', '9'],
-  ];
-
 class App extends Component {
-    state = {
-        squares: {
-            1: { content: '', played: false },
-            2: { content: '', played: false },
-            3: { content: '', played: false },
-            4: { content: '', played: false },
-            5: { content: '', played: false },
-            6: { content: '', played: false },
-            7: { content: '', played: false },
-            8: { content: '', played: false },
-            9: { content: '', played: false },
-        },
-        gameStatus: 'play',
-        isPlayerOnesTurn: true,
-        playerOne: {
-            squares: [],
-        },
-        playerTwo: {
-            squares: [],
-        },
+    state = INITIAL_STATE
+
+    resetGame = () => {
+        this.setState({
+            ...INITIAL_STATE,
+            playerOne: {
+                squares: [],
+                score: this.state.playerOne.score,
+            },
+            playerTwo: {
+                squares: [],
+                score: this.state.playerTwo.score,
+            },
+        });
     }
 
     updateGameStatus = (clickedSquareId) => {
@@ -50,10 +34,18 @@ class App extends Component {
             if (this.state.isPlayerOnesTurn) {
                 this.setState({
                     gameStatus: 'winnerPlayerOne',
+                    playerOne: {
+                        squares: this.state.playerOne.squares,
+                        score: this.state.playerOne.score + 1,
+                    },
                 });
             } else {
                 this.setState({
                     gameStatus: 'winnerPlayerTwo',
+                    playerTwo: {
+                        squares: this.state.playerTwo.squares,
+                        score: this.state.playerTwo.score + 1,
+                    },
                 });
             }
             return;
@@ -68,16 +60,16 @@ class App extends Component {
             return;
         }
 
-
         // if game isn't over, switch to other player
         this.setState({ isPlayerOnesTurn: !this.state.isPlayerOnesTurn });
     }
 
     handleSquareClick = (e) => {
-    // don't allow anymore actions if game is already over
-    if (this.state.gameStatus !== 'play') {
-        return;
-    }
+        // don't allow anymore actions if game is already over
+        if (this.state.gameStatus !== 'play') {
+            return;
+        }
+
         const clickedSquareId = e.target.id;
 
         // if the square has already been used, don't do anything
@@ -92,6 +84,7 @@ class App extends Component {
             {
                 [currentPlayer]: {
                     squares: this.state[currentPlayer].squares.concat(clickedSquareId),
+                    score: this.state[currentPlayer].score,
                 },
                 squares: {
                     ...this.state.squares,
@@ -136,12 +129,18 @@ class App extends Component {
                     handleSquareClick={this.handleSquareClick}
                 />
 
-                <button className="reset-game">Reset Game</button>
+                <button
+                    className="reset-game"
+                    onClick={this.resetGame}
+                >
+                    Reset Game
+                </button>
+
 
                 <div className="scores">
                     <h2>Score Card</h2>
-                    <p>Player 1: 0</p>
-                    <p>Player 2: 0</p>
+                    <p>Player 1: {this.state.playerOne.score}</p>
+                    <p>Player 2: {this.state.playerTwo.score}</p>
                 </div>
 
             </div>
