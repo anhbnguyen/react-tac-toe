@@ -1,28 +1,91 @@
-.App {
-  text-align: center;
+.app {
+    text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.app-header {
+    background-color: #222;
+    height: 60px;
+    padding: 20px;
+    color: white;
+    margin-bottom: 20px;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.app-title {
+    font-size: 1.5em;
 }
 
-.App-title {
-  font-size: 1.5em;
+.game {
+    width: 300px;
+    height: 300px;
+    border: 1px solid #dadada;
+    margin: 0 auto;
+    padding: 0;
+    margin-bottom: 20px;
 }
 
-.App-intro {
-  font-size: large;
+.game > li {
+    list-style: none;
+    float: left;
+    overflow: hidden;
+    text-decoration:none;
+    width: 100px;
+    height: 100px;
+    background: #f1f1f1;
+    border: 1px solid #ccc;
+    border-right: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+    cursor: pointer;
+    text-transform: uppercase;
+    text-align: center;
+    padding-top: 20px;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.game > li:nth-child(3n) {
+    border-right: 1px solid #ccc;
+}
+.game > li:nth-child(n+7):nth-child(-n+9) {
+    border-bottom: 1px solid #ccc;
+}
+.game > li:hover {
+    background: #f9f9f9;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.game > li.x {
+    font-size: 40px;
+    color: #ed4e6e
+}
+.game > li.x:after {
+    content: 'X'
+}
+
+.game > li.o {
+    font-size: 40px;
+    color: #4a8c5b;
+}
+.game > li.o:after {
+    content: 'O'
+}
+
+.reset-game {
+    text-align: center;
+    border: none;
+    padding: 0.6em 1.2em;
+    background: #ed4e6e;
+    color: #fff;
+    font-size: 1em;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    display: inline-block;
+    margin: 3px 2px;
+    border-radius: 2px;
+}
+
+.reset-game:hover {
+    background: #2c3e52;
+}
+
+.scores {
+    margin-bottom: 20px;
 }
