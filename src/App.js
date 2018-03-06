@@ -14,7 +14,6 @@ class App extends Component {
             7: { content: '', played: false },
             8: { content: '', played: false },
             9: { content: '', played: false },
-
         },
         isPlayerOnesTurn: true,
     }
@@ -27,14 +26,14 @@ class App extends Component {
             return;
         }
 
-		const letterToAdd = this.state.isPlayerOnesTurn ? 'x' : 'o';
+        const letterToAdd = this.state.isPlayerOnesTurn ? 'x' : 'o';
 
         this.setState({
-			isPlayerOnesTurn: !this.state.isPlayerOnesTurn,
-			squares: {
-				...this.state.squares,
-				[clickedSquareId]: { content: letterToAdd, played: true }
-			},
+            isPlayerOnesTurn: !this.state.isPlayerOnesTurn,
+            squares: {
+                ...this.state.squares,
+                [clickedSquareId]: { content: letterToAdd, played: true }
+            },
         });
     }
 
