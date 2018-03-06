@@ -40,3 +40,5 @@ class App extends Component {
     Reset Game
 </button>
 ```
+
+[Continue to the next lesson](https://github.com/joeynguyen/react-tac-toe/blob/master/lessons/lesson-10-updating-player-scores.md)
