@@ -81,3 +81,5 @@ class App extends Component {
     }
 }
 ```
+
+[Continue to the next lesson](https://github.com/joeynguyen/react-tac-toe/blob/master/lessons/lesson-2-handle-click-event.md)
