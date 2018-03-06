@@ -19,3 +19,5 @@ case 'draw':
 default:
     gameStatusText = `Turn: Player ${currentPlayer}`;
 ```
+
+[Continue to the next lesson](https://github.com/joeynguyen/react-tac-toe/blob/master/lessons/lesson-9-resetting-the-game.md)
