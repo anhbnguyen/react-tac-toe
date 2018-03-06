@@ -31,3 +31,15 @@ handleSquareClick = (e) => {
     });
 }
 ```
+
+```
+render() {
+    const currentPlayer = this.state.isPlayerOnesTurn ? '1' : '2';
+```
+
+```
+<section className="game-message">
+    <h2>Turn: Player {currentPlayer}</h2>
+</section>
+```
+
