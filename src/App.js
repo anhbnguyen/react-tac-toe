@@ -2,6 +2,17 @@ import React, { Component } from 'react';
 import GameBoard from './GameBoard.js';
 import './App.css';
 
+const WINNING_COMBINATIONS = [
+    ['1', '2', '3'],
+    ['1', '4', '7'],
+    ['1', '5', '9'],
+    ['2', '5', '8'],
+    ['3', '6', '9'],
+    ['3', '5', '7'],
+    ['4', '5', '6'],
+    ['7', '8', '9'],
+  ];
+
 class App extends Component {
     state = {
         squares: {
@@ -15,6 +26,7 @@ class App extends Component {
             8: { content: '', played: false },
             9: { content: '', played: false },
         },
+        gameStatus: 'play',
         isPlayerOnesTurn: true,
         playerOne: {
             squares: [],
@@ -24,7 +36,48 @@ class App extends Component {
         },
     }
 
+    updateGameStatus = (clickedSquareId) => {
+        const currentPlayerSquares = this.state.isPlayerOnesTurn
+            ? this.state.playerOne.squares
+            : this.state.playerTwo.squares;
+
+        const possibleWinningCombinations = WINNING_COMBINATIONS.filter(combination => combination.includes(clickedSquareId));
+        const playerHasWon = possibleWinningCombinations.find(combination => {
+          return combination.every(number => currentPlayerSquares.includes(number));
+        });
+
+        if (playerHasWon) {
+            if (this.state.isPlayerOnesTurn) {
+                this.setState({
+                    gameStatus: 'winnerPlayerOne',
+                });
+            } else {
+                this.setState({
+                    gameStatus: 'winnerPlayerTwo',
+                });
+            }
+            return;
+        }
+
+        const allSquaresUsed = Object.keys(this.state.squares).every(squareId => {
+            return this.state.squares[squareId].played === true;
+        });
+
+        if (allSquaresUsed && !playerHasWon) {
+            this.setState({gameStatus: 'draw'})
+            return;
+        }
+
+
+        // if game isn't over, switch to other player
+        this.setState({ isPlayerOnesTurn: !this.state.isPlayerOnesTurn });
+    }
+
     handleSquareClick = (e) => {
+    // don't allow anymore actions if game is already over
+    if (this.state.gameStatus !== 'play') {
+        return;
+    }
         const clickedSquareId = e.target.id;
 
         // if the square has already been used, don't do anything
@@ -35,20 +88,37 @@ class App extends Component {
         const letterToAdd = this.state.isPlayerOnesTurn ? 'x' : 'o';
         const currentPlayer = this.state.isPlayerOnesTurn ? 'playerOne' : 'playerTwo'
 
-        this.setState({
-            isPlayerOnesTurn: !this.state.isPlayerOnesTurn,
-            [currentPlayer]: {
-                squares: this.state[currentPlayer].squares.concat(clickedSquareId),
+        this.setState(
+            {
+                [currentPlayer]: {
+                    squares: this.state[currentPlayer].squares.concat(clickedSquareId),
+                },
+                squares: {
+                    ...this.state.squares,
+                    [clickedSquareId]: { content: letterToAdd, played: true }
+                },
             },
-            squares: {
-                ...this.state.squares,
-                [clickedSquareId]: { content: letterToAdd, played: true }
-            },
-        });
+            () => this.updateGameStatus(clickedSquareId)
+        );
     }
 
     render() {
         const currentPlayer = this.state.isPlayerOnesTurn ? '1' : '2';
+
+        let gameStatusText;
+        switch(this.state.gameStatus) {
+            case 'winnerPlayerOne':
+                gameStatusText = 'Player One Wins!';
+                break;
+            case 'winnerPlayerTwo':
+                gameStatusText = 'Player Two Wins!';
+                break;
+            case 'draw':
+                gameStatusText = 'Draw!';
+                break;
+            default:
+                gameStatusText = `Turn: Player ${currentPlayer}`;
+        }
 
         return (
             <div className="app">
@@ -58,7 +128,7 @@ class App extends Component {
                 </header>
 
                 <section className="game-message">
-                    <h2>Turn: Player {currentPlayer}</h2>
+                    <h2>{gameStatusText}</h2>
                 </section>
 
                 <GameBoard
