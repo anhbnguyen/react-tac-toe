@@ -22,8 +22,8 @@ Render the `<li>` HTML tags based on the component's `state` instead of hard-cod
 {
 Object.keys(this.state.squares).map(squareId => (
     <li
+        key={squareId}
         className={this.state.squares[squareId].content}
-        id={squareId}
     ></li>
 ))
 }
