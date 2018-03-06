@@ -1,3 +1,5 @@
+## Updating Player Scores
+
 Add player scores to initial state.
 ```
 playerOne: {

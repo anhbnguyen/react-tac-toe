@@ -1,3 +1,5 @@
+## Determining if the Game is a Draw
+
 ```
 const allSquaresUsed = Object.keys(this.state.squares).every(squareId => {
     return this.state.squares[squareId].played === true;

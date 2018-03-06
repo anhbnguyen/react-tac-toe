@@ -1,3 +1,5 @@
+## Determining if a Player Has Won
+
 Store possible winning combinations to a variable.
 ```
 const WINNING_COMBINATIONS = [

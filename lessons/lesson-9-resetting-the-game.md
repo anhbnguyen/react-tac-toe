@@ -1,3 +1,5 @@
+## Resetting the Game
+
 ```
 const INITIAL_STATE = {
     squares: {

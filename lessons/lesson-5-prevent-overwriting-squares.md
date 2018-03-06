@@ -1,4 +1,6 @@
 ## Prevent Players from Overwriting Squares
+
+As of now, if a player clicks on a square that's already been played on, they can still re-play on that square. Let's prevent that from happening.
 ```
 state = {
     squares: {
