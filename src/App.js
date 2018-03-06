@@ -1,7 +1,36 @@
 import React, { Component } from 'react';
+import GameBoard from './GameBoard.js';
 import './App.css';
 
 class App extends Component {
+    state = {
+        squares: {
+            1: { content: '' },
+            2: { content: '' },
+            3: { content: '' },
+            4: { content: '' },
+            5: { content: '' },
+            6: { content: '' },
+            7: { content: '' },
+            8: { content: '' },
+            9: { content: '' },
+        },
+        isPlayerOnesTurn: true,
+    }
+
+    handleSquareClick = (e) => {
+        const clickedSquareId = e.target.id;
+		const letterToAdd = this.state.isPlayerOnesTurn ? 'x' : 'o';
+
+        this.setState({
+			isPlayerOnesTurn: !this.state.isPlayerOnesTurn,
+			squares: {
+				...this.state.squares,
+				[clickedSquareId]: { content: letterToAdd }
+			},
+        });
+    }
+
     render() {
         return (
             <div className="app">
@@ -14,20 +43,10 @@ class App extends Component {
                     <h2>Turn: Player 1</h2>
                 </section>
 
-                <ul className="game">
-                    {/* first row */}
-                    <li className="o"></li>
-                    <li className="x"></li>
-                    <li></li>
-                    {/* second row */}
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    {/* third row */}
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                </ul>
+                <GameBoard
+                    squares={this.state.squares}
+                    handleSquareClick={this.handleSquareClick}
+                />
 
                 <button className="reset-game">Reset Game</button>
 
