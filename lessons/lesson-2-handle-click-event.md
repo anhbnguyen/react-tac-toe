@@ -25,3 +25,5 @@ handleSquareClick = (e) => {
 ```
 
 For now, we will mark each Tic Tac Toe square we click on with an **'X'**. We accomplish this by updating the App component's `state` using React's built-in method `this.setState`.
+
+[Continue to the next lesson](https://github.com/joeynguyen/react-tac-toe/blob/master/lessons/lesson-3-components-separation-of-concerns.md)
