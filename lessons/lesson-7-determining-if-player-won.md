@@ -51,20 +51,21 @@ this.updateGameStatus(clickedSquareId)
 
 Update the UI to tell the players when one of them has won.
 ```
-    render() {
-        const currentPlayer = this.state.isPlayerOnesTurn ? '1' : '2';
+render() {
+    const currentPlayer = this.state.isPlayerOnesTurn ? '1' : '2';
 
-        let gameStatusText;
-        switch(this.state.gameStatus) {
-            case 'winnerPlayerOne':
-                gameStatusText = 'Player One Wins!';
-                break;
-            case 'winnerPlayerTwo':
-                gameStatusText = 'Player Two Wins!';
-                break;
-            default:
-                gameStatusText = `Turn: Player ${currentPlayer}`;
-        }
+    let gameStatusText;
+    switch(this.state.gameStatus) {
+        case 'winnerPlayerOne':
+            gameStatusText = 'Player One Wins!';
+            break;
+        case 'winnerPlayerTwo':
+            gameStatusText = 'Player Two Wins!';
+            break;
+        default:
+            gameStatusText = `Turn: Player ${currentPlayer}`;
+    }
+...
 ```
 ```
 <section className="game-message">
