@@ -132,3 +132,13 @@ if (playerHasWon) {
 // if game isn't over, switch to other player
 this.setState({ isPlayerOnesTurn: !this.state.isPlayerOnesTurn });
 ```
+
+One more thing: the players can still click on the remaining untouched squares and fill them in even after a player has won. We can prevent that by adding code to the top of the `handleSquareClick` method:
+```
+handleSquareClick = (e) => {
+    // don't allow anymore actions if game is already over
+    if (this.state.gameStatus !== 'play') {
+        return;
+    }
+...
+```
