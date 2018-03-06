@@ -35,3 +35,5 @@ yarn start
 This project has already been bootstrapped for you to begin making changes and seeing your changes being reflected in the UI right when you save thanks to the live reload feature built into create-react-app. Feel free to try it out for yourself.
 
 In the next few lessons, we'll be focusing on making changes mainly to the `src/App.js` file.
+
+[Continue to the next lesson](https://github.com/joeynguyen/react-tac-toe/blob/master/lessons/lesson-1-rendering-from-state.md)
