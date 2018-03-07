@@ -22,4 +22,4 @@ default:
     gameStatusText = `Turn: Player ${currentPlayer}`;
 ```
 
-[Continue to the next lesson](https://github.com/joeynguyen/react-tac-toe/blob/master/lessons/lesson-09-resetting-the-game.md)
+[Continue to the next lesson](lesson-09-resetting-the-game.md)

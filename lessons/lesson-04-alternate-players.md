@@ -43,4 +43,4 @@ render() {
 </section>
 ```
 
-[Continue to the next lesson](https://github.com/joeynguyen/react-tac-toe/blob/master/lessons/lesson-05-prevent-overwriting-squares.md)
+[Continue to the next lesson](lesson-05-prevent-overwriting-squares.md)

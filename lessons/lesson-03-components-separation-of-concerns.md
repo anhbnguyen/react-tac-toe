@@ -53,4 +53,4 @@ import GameBoard from './GameBoard.js';
 ## PropTypes
 PropTypes are React's way of implementing a simple type-checking system to prevent bugs from happening. It's like a contract between a parent component and a child component where a child component states what type of value it expects from each `prop` that it gets from the parent.
 
-[Continue to the next lesson](https://github.com/joeynguyen/react-tac-toe/blob/master/lessons/lesson-04-alternate-players.md)
+[Continue to the next lesson](lesson-04-alternate-players.md)

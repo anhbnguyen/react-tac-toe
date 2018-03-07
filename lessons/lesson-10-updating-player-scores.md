@@ -67,4 +67,4 @@ resetGame = () => {
 }
 ```
 
-[Continue to the next lesson](https://github.com/joeynguyen/react-tac-toe/blob/master/lessons/lesson-11-refactoring-code-clean-up.md)
+[Continue to the next lesson](lesson-11-refactoring-code-clean-up.md)

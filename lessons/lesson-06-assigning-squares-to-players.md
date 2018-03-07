@@ -27,4 +27,4 @@ this.setState({
 });
 ```
 
-[Continue to the next lesson](https://github.com/joeynguyen/react-tac-toe/blob/master/lessons/lesson-07-determining-if-player-won.md)
+[Continue to the next lesson](lesson-07-determining-if-player-won.md)

@@ -43,4 +43,4 @@ class App extends Component {
 </button>
 ```
 
-[Continue to the next lesson](https://github.com/joeynguyen/react-tac-toe/blob/master/lessons/lesson-10-updating-player-scores.md)
+[Continue to the next lesson](lesson-10-updating-player-scores.md)
