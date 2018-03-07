@@ -39,4 +39,4 @@ handleSquareClick = (e) => {
 }
 ```
 
-[Continue to the next lesson](https://github.com/joeynguyen/react-tac-toe/blob/master/lessons/lesson-6-assigning-squares-to-players.md)
+[Continue to the next lesson](https://github.com/joeynguyen/react-tac-toe/blob/master/lessons/lesson-06-assigning-squares-to-players.md)

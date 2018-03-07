@@ -36,4 +36,4 @@ This project has already been bootstrapped for you to begin making changes and s
 
 In the next few lessons, we'll be focusing on making changes mainly to the `src/App.js` file.
 
-[Continue to the next lesson](https://github.com/joeynguyen/react-tac-toe/blob/master/lessons/lesson-1-rendering-from-state.md)
+[Continue to the next lesson](https://github.com/joeynguyen/react-tac-toe/blob/master/lessons/lesson-01-rendering-from-state.md)
