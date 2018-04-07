@@ -42,3 +42,5 @@ Import the variables into **App.js**.
 ```
 import { INITIAL_STATE, WINNING_COMBINATIONS } from './constants.js'
 ```
+
+[Continue to the next lesson](lesson-12-build-and-deploy.md)
